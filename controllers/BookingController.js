@@ -1,5 +1,6 @@
 const Products = require("../models/addProduct");
 const Bookings = require("../models/booking");
+const Users = require("../models/user");
 
 // add new booking
 exports.addBooking = async (req, res, next) => {
@@ -12,5 +13,17 @@ exports.addBooking = async (req, res, next) => {
   res.status(201).json({
     success: true,
     addBooking,
+  });
+};
+
+// / get single user bookings
+exports.getMyBookings = async (req, res, next) => {
+  // let user = await Users.findOne({email:req.params.email});
+
+  let products = await Products.find({ userEmail: req.params.email });
+
+  res.status(201).json({
+    success: true,
+    products,
   });
 };
