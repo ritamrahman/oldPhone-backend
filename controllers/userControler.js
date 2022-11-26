@@ -43,3 +43,21 @@ exports.updateUser = async (req, res, next) => {
     user,
   });
 };
+
+// delete user
+exports.deleteUser = async (req, res, next) => {
+  let user = await Users.findById(req.params.id);
+
+  if (!user) {
+    return "user not found", 404;
+  }
+
+  // user update function
+  user = await Users.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    message: "user deleted successfully!",
+    user,
+  });
+};
