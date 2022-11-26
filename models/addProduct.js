@@ -36,6 +36,21 @@ const addProductSchema = new mongoose.Schema({
     required: [true, "please enter years of use of your product"],
     trim: true,
   },
+  SellerName: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: [true, "please enter resale price of your product"],
+    ref: "Users",
+  },
+  isAdvertise: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isPayed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   createdAt: {
     type: Date,
     required: [true, "please enter appointment time"],

@@ -1,7 +1,12 @@
 const Products = require("../models/addProduct");
+const Users = require("../models/user");
 
 // add new product
 exports.addProduct = async (req, res, next) => {
+  let user = await Users.findOne({ email: req.params.email });
+
+  req.body.SellerName = user._id;
+
   const addProduct = await Products.create(req.body);
 
   res.status(201).json({

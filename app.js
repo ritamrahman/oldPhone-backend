@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
 });
 
 // product route
-app.post("/product", addProduct); //add product
+app.post("/product/:email", addProduct); //add product
 app.get("/products", getAllProducts); //get all product
 app.put("/product/:id", updateProduct); //update single product
 app.delete("/product/:id", deleteProduct); //delete single product
