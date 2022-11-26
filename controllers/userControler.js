@@ -22,6 +22,24 @@ exports.getAllUsers = async (req, res, next) => {
   });
 };
 
+// getSingleUser
+exports.getSingleUser = async (req, res, next) => {
+  let user = await Users.findOne({ email: req.params.email });
+
+  if (!user) {
+    // return res.status(404).json({
+    //   success: false,
+    //   message: "user update successfully!",
+    // });
+    return "user not found", 404;
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+    count: user.length,
+  });
+};
 // update user
 exports.updateUser = async (req, res, next) => {
   let user = await Users.findById(req.params.id);

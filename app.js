@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { getAllProducts, addProduct, updateProduct, deleteProduct } = require("./controllers/productsController");
-const { addUser, getAllUsers, updateUser, deleteUser } = require("./controllers/userControler");
+const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
 const { addBooking, getMyBookings } = require("./controllers/BookingController");
 
 const app = express();
@@ -28,6 +28,7 @@ app.get("/users/:email", getMyBookings); //get my all bookings
 
 // user route
 app.post("/user", addUser); //add User
+app.get("/user/:email", getSingleUser); //get getSingleUser
 app.get("/users", getAllUsers); //get all User
 app.put("/user/:id", updateUser); //update single User
 app.delete("/user/:id", deleteUser); //delete single User
