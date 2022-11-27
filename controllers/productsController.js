@@ -32,7 +32,7 @@ exports.getAllProducts = async (req, res, next) => {
 
 // get all products by ctg
 exports.getFilterProducts = async (req, res, next) => {
-  let product = await Products.find({ category: req.params.ctg });
+  let product = await Products.find({ category: req.params.id }).populate({ path: "category", select: "title" }).exec();
 
   if (!product) {
     return "Product not found", 404;
