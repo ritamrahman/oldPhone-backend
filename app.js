@@ -1,8 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-const { getAllProducts, addProduct, updateProduct, deleteProduct } = require("./controllers/productsController");
+const {
+  getAllProducts,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  getFilterProducts,
+} = require("./controllers/productsController");
 const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
 const { addBooking, getMyBookings } = require("./controllers/BookingController");
+const { addCategory } = require("./controllers/categoryController");
 
 const app = express();
 
@@ -17,8 +24,12 @@ app.get("/", async (req, res) => {
 // product route
 app.post("/product/:email", addProduct); //add product
 app.get("/products", getAllProducts); //get all product
+app.get("/products/ctg", getFilterProducts); //get all product by ctg
 app.put("/product/:id", updateProduct); //update single product
 app.delete("/product/:id", deleteProduct); //delete single product
+
+// category route
+app.post("/category", addCategory); //add product
 
 // booking route
 app.post("/booking/:id", addBooking); //add User

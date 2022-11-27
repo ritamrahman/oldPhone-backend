@@ -26,6 +26,23 @@ exports.getAllProducts = async (req, res, next) => {
     allProducts,
   });
 };
+
+// get all products by ctg
+exports.getFilterProducts = async (req, res, next) => {
+  let product = await Products.find({ category: req.params.ctg });
+
+  if (!product) {
+    return "Product not found", 404;
+  }
+  let count = product.length;
+
+  res.status(200).json({
+    success: true,
+    count,
+    product,
+  });
+};
+
 // update product
 exports.updateProduct = async (req, res, next) => {
   let product = await Products.findById(req.params.id);
