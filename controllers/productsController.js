@@ -19,7 +19,10 @@ exports.addProduct = async (req, res, next) => {
 exports.getAllProducts = async (req, res, next) => {
   const query = {};
 
-  const allProducts = await Products.find(query);
+  const allProducts = await Products.find(query)
+    .populate({ path: "category", select: "title" })
+    .populate({ path: "SellerName", select: ["name", "email"] })
+    .exec();
 
   res.status(201).json({
     success: true,

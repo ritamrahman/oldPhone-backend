@@ -7,9 +7,9 @@ const addProductSchema = new mongoose.Schema({
     trim: true,
   },
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: [true, "please enter product category"],
-    trim: true,
+    ref: "Categories",
   },
   image: {
     type: String,
