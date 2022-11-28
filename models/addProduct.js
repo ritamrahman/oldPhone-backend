@@ -36,6 +36,20 @@ const addProductSchema = new mongoose.Schema({
     required: [true, "please enter years of use of your product"],
     trim: true,
   },
+  condition: {
+    type: String,
+    required: [true, "please enter your product condition"],
+    trim: true,
+  },
+  number: {
+    type: Number,
+    required: [true, "please enter your contact number"],
+    trim: true,
+  },
+  description: {
+    type: String,
+    trim: true,
+  },
   SellerName: {
     type: mongoose.Schema.Types.ObjectId,
     required: [true, "please enter resale price of your product"],

@@ -7,6 +7,7 @@ exports.addProduct = async (req, res, next) => {
 
   req.body.SellerName = user._id;
 
+  console.log(req.body);
   const addProduct = await Products.create(req.body);
 
   res.status(201).json({
@@ -32,7 +33,46 @@ exports.getAllProducts = async (req, res, next) => {
 
 // get all products by ctg
 exports.getFilterProducts = async (req, res, next) => {
-  let product = await Products.find({ category: req.params.id }).populate({ path: "category", select: "title" }).exec();
+  let product = await Products.find({ category: req.params.id })
+    .populate({ path: "category", select: "title" })
+    .populate({ path: "SellerName" })
+    .exec();
+
+  if (!product) {
+    return "Product not found", 404;
+  }
+  let count = product.length;
+
+  res.status(200).json({
+    success: true,
+    count,
+    product,
+  });
+};
+// get all products by ctg
+exports.getProductsByEmail = async (req, res, next) => {
+  let product = await Products.find({ category: req.params.id })
+    .populate({ path: "category", select: "title" })
+    .populate({ path: "SellerName" })
+    .exec();
+
+  if (!product) {
+    return "Product not found", 404;
+  }
+  let count = product.length;
+
+  res.status(200).json({
+    success: true,
+    count,
+    product,
+  });
+};
+// get all Advertise products
+exports.getAllADProducts = async (req, res, next) => {
+  let product = await Products.find({ isAdvertise: true })
+    .populate({ path: "category", select: "title" })
+    .populate({ path: "SellerName", select: ["name", "email"] })
+    .exec();
 
   if (!product) {
     return "Product not found", 404;

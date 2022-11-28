@@ -6,6 +6,8 @@ const {
   updateProduct,
   deleteProduct,
   getFilterProducts,
+  getProductsByEmail,
+  getAllADProducts,
 } = require("./controllers/productsController");
 const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
 const { addBooking, getMyBookings } = require("./controllers/BookingController");
@@ -25,6 +27,8 @@ app.get("/", async (req, res) => {
 app.post("/product/:email", addProduct); //add product
 app.get("/products", getAllProducts); //get all product
 app.get("/products/:id", getFilterProducts); //get all product by ctg
+app.get("/myproducts/:email", getProductsByEmail); //get all product by email
+app.get("/adproducts", getAllADProducts); //get all ad products
 app.put("/product/:id", updateProduct); //update single product
 app.delete("/product/:id", deleteProduct); //delete single product
 
