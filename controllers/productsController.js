@@ -31,10 +31,29 @@ exports.getAllProducts = async (req, res, next) => {
   });
 };
 
+// get product by id
+// exports.getProductById = async (req, res, next) => {
+//   // let product = await Products.findById(req.params.id);
+
+//   // if (!product) {
+//   //   return "Product not found", 404;
+//   // }
+
+//   // product update function
+//   let product = await Products.find({ _id: req.params.id })
+//     .populate({ path: "SellerName" })
+//     .populate({ path: "category" });
+
+//   res.status(200).json({
+//     success: true,
+//     product,
+//   });
+// };
+
 // get all products by ctg
 exports.getFilterProducts = async (req, res, next) => {
   let product = await Products.find({ category: req.params.id })
-    .populate({ path: "category", select: "title" })
+    .populate({ path: "category" })
     .populate({ path: "SellerName" })
     .exec();
 
@@ -49,7 +68,7 @@ exports.getFilterProducts = async (req, res, next) => {
     product,
   });
 };
-// get all products by ctg
+// get all products by email
 exports.getProductsByEmail = async (req, res, next) => {
   let product = await Products.find({ category: req.params.id })
     .populate({ path: "category", select: "title" })

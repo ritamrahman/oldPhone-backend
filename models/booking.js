@@ -11,6 +11,25 @@ const bookingSchema = new mongoose.Schema({
     required: [true, "please email address"],
     trim: true,
   },
+  location: {
+    type: String,
+    required: [true, "please add address"],
+    trim: true,
+  },
+  price: {
+    type: String,
+    required: [true, "please add price"],
+    trim: true,
+  },
+  number: {
+    type: Number,
+    required: [true, "please add number"],
+    trim: true,
+  },
+  productName: {
+    type: String,
+    required: [true, "please enter product"],
+  },
   product: {
     type: mongoose.Schema.Types.ObjectId,
     required: [true, "please enter product"],

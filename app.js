@@ -8,6 +8,7 @@ const {
   getFilterProducts,
   getProductsByEmail,
   getAllADProducts,
+  getProductById,
 } = require("./controllers/productsController");
 const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
 const { addBooking, getMyBookings } = require("./controllers/BookingController");
@@ -26,6 +27,7 @@ app.get("/", async (req, res) => {
 // product route
 app.post("/product/:email", addProduct); //add product
 app.get("/products", getAllProducts); //get all product
+// app.get("/singleProduct/:id", getProductById); //get single product by id
 app.get("/products/:id", getFilterProducts); //get all product by ctg
 app.get("/myproducts/:email", getProductsByEmail); //get all product by email
 app.get("/adproducts", getAllADProducts); //get all ad products
