@@ -5,7 +5,7 @@ const Users = require("../models/user");
 exports.addProduct = async (req, res, next) => {
   let user = await Users.findOne({ email: req.params.email });
 
-  req.body.SellerName = user._id;
+  req.body.SellerName = user?._id;
 
   console.log(req.body);
   const addProduct = await Products.create(req.body);
@@ -107,7 +107,7 @@ exports.getAllADProducts = async (req, res, next) => {
   });
 };
 
-// update product
+// update product single product
 exports.updateProduct = async (req, res, next) => {
   let product = await Products.findById(req.params.id);
 
@@ -118,8 +118,6 @@ exports.updateProduct = async (req, res, next) => {
   // product update function
   product = await Products.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true,
-    useFindAndModify: false,
   });
 
   res.status(200).json({

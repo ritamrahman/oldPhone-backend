@@ -11,8 +11,16 @@ const {
   getProductById,
   deleteAllProducts,
 } = require("./controllers/productsController");
-const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
-const { addBooking, getMyBookings, deleteAllBookings } = require("./controllers/BookingController");
+const {
+  addUser,
+  getAllUsers,
+  updateUser,
+  deleteUser,
+  getSingleUser,
+  getAllBuyers,
+  getAllSellers,
+} = require("./controllers/userControler");
+const { addBooking, getMyBookings, deleteAllBookings, getBookings } = require("./controllers/BookingController");
 const { addCategory, getCategories } = require("./controllers/categoryController");
 
 const app = express();
@@ -43,15 +51,18 @@ app.get("/categories", getCategories); //get categories
 // booking route
 app.post("/booking/:id", addBooking); //add User
 app.get("/users/:email", getMyBookings); //get my all bookings
+app.get("/bookings", getBookings); //get my all bookings
 app.delete("/deleteallbookings", deleteAllBookings); //delete all product
 // app.put("/user/:id", updateUser); //update single User
 // app.delete("/user/:id", deleteUser); //delete single User
 
 // user route
-app.post("/user", addUser); //add User
+app.post("/user/:email", addUser); //add User
 app.get("/user/:email", getSingleUser); //get getSingleUser by email
+app.get("/buyers", getAllBuyers); //get gall buyers
+app.get("/sellers", getAllSellers); //get gall sellers
 app.get("/users", getAllUsers); //get all User
-app.put("/user/:id", updateUser); //update single User
+app.put("/user/:email", updateUser); //update single User
 app.delete("/user/:id", deleteUser); //delete single User
 
 module.exports = app;

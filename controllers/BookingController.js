@@ -27,6 +27,17 @@ exports.getMyBookings = async (req, res, next) => {
     products,
   });
 };
+// / get all bookings
+exports.getBookings = async (req, res, next) => {
+  // let user = await Users.findOne({email:req.params.email});
+
+  let bookings = await Bookings.find({});
+
+  res.status(201).json({
+    success: true,
+    bookings,
+  });
+};
 
 // delete all products
 exports.deleteAllBookings = async (req, res, next) => {
