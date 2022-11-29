@@ -70,7 +70,9 @@ exports.getFilterProducts = async (req, res, next) => {
 };
 // get all products by email
 exports.getProductsByEmail = async (req, res, next) => {
-  let product = await Products.find({ category: req.params.id })
+  let user = await Users.findOne({ email: req.params.email });
+
+  let product = await Products.find({ SellerName: user?._id })
     .populate({ path: "category", select: "title" })
     .populate({ path: "SellerName" })
     .exec();
@@ -142,5 +144,15 @@ exports.deleteProduct = async (req, res, next) => {
     success: true,
     message: "Product deleted successfully!",
     product,
+  });
+};
+
+// delete all products
+exports.deleteAllProducts = async (req, res, next) => {
+  await Products.deleteMany({});
+
+  res.status(200).json({
+    success: true,
+    message: "Product deleted successfully!",
   });
 };

@@ -20,10 +20,20 @@ exports.addBooking = async (req, res, next) => {
 exports.getMyBookings = async (req, res, next) => {
   // let user = await Users.findOne({email:req.params.email});
 
-  let products = await Products.find({ userEmail: req.params.email });
+  let products = await Bookings.find({ userEmail: req.params.email });
 
   res.status(201).json({
     success: true,
     products,
+  });
+};
+
+// delete all products
+exports.deleteAllBookings = async (req, res, next) => {
+  await Bookings.deleteMany({});
+
+  res.status(200).json({
+    success: true,
+    message: "deleted successfully!",
   });
 };

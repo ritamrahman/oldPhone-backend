@@ -9,9 +9,10 @@ const {
   getProductsByEmail,
   getAllADProducts,
   getProductById,
+  deleteAllProducts,
 } = require("./controllers/productsController");
 const { addUser, getAllUsers, updateUser, deleteUser, getSingleUser } = require("./controllers/userControler");
-const { addBooking, getMyBookings } = require("./controllers/BookingController");
+const { addBooking, getMyBookings, deleteAllBookings } = require("./controllers/BookingController");
 const { addCategory, getCategories } = require("./controllers/categoryController");
 
 const app = express();
@@ -33,6 +34,7 @@ app.get("/myproducts/:email", getProductsByEmail); //get all product by email
 app.get("/adproducts", getAllADProducts); //get all ad products
 app.put("/product/:id", updateProduct); //update single product
 app.delete("/product/:id", deleteProduct); //delete single product
+app.delete("/deleteallproducts", deleteAllProducts); //delete all product
 
 // category route
 app.post("/category", addCategory); //add category
@@ -41,6 +43,7 @@ app.get("/categories", getCategories); //get categories
 // booking route
 app.post("/booking/:id", addBooking); //add User
 app.get("/users/:email", getMyBookings); //get my all bookings
+app.delete("/deleteallbookings", deleteAllBookings); //delete all product
 // app.put("/user/:id", updateUser); //update single User
 // app.delete("/user/:id", deleteUser); //delete single User
 
