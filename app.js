@@ -26,7 +26,7 @@ const { addCategory, getCategories } = require("./controllers/categoryController
 const app = express();
 
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 
 // routes
 app.get("/", async (req, res) => {
